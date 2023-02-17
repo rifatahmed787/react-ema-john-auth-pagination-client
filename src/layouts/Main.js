@@ -1,14 +1,14 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import Header from '../components/Header/Header';
+import React from "react";
+import { Outlet } from "react-router-dom";
+import Navbar from "../Shared/Navbar";
 
 const Main = () => {
-    return (
-        <div>
-            <Header></Header>
-            <Outlet></Outlet>
-        </div>
-    );
+  return (
+    <div>
+      <Navbar></Navbar>
+      <Outlet></Outlet>
+    </div>
+  );
 };
 
 export default Main;
