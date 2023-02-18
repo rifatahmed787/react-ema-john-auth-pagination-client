@@ -6,6 +6,7 @@ import Shipping from "../components/Shipping/Shipping";
 import Shop from "../components/Shop/Shop";
 import Main from "../layouts/Main";
 import { productsAndCartLoader } from "../loaders/productsAndCartLoader";
+import Home from "../Pages/Home/Home";
 import ForgotPass from "../Pages/Login/ForgotPass";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
@@ -18,7 +19,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Shop />,
+        element: <Home />,
       },
       {
         path: "/orders",
@@ -43,7 +44,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About />,
+        element: <Shop />,
       },
       {
         path: "/login",
