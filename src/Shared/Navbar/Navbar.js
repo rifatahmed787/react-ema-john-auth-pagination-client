@@ -2,13 +2,13 @@ import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { useEffect } from "react";
-import { AuthContext } from "../contexts/UserContext";
+import { AuthContext } from "../../contexts/UserContext";
 import { Icon } from "@iconify/react";
-import logo from "../assets/Logo.svg";
+import logo from "../../assets/Logo.svg";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, logOut } = useContext(AuthContext);
+  const { user, SignOut } = useContext(AuthContext);
   const [theme, setTheme] = useState("light");
   const location = useLocation();
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const Navbar = () => {
   };
 
   const handleLogOut = () => {
-    logOut()
+    SignOut()
       .then(() => {
         toast.success("Successfully loged out");
         navigate("/login");
@@ -77,10 +77,26 @@ const Navbar = () => {
             <Link to="/dashboard">Dashboard</Link>
           </li>
           <li
-            className="btn btn-ghost normal-case text-base flex items-center navber-left"
+            className="btn btn-ghost btn-sm normal-case text-base flex items-center navber-left"
             onClick={handleLogOut}
           >
             Log out
+          </li>
+          <li>
+            {user?.photoURL ? (
+              <img
+                title="user?.displayName"
+                src={user.photoURL}
+                alt=""
+                className="w-5"
+              />
+            ) : (
+              <Icon
+                title="user?.displayName"
+                icon="iconoir:profile-circle"
+                width="25"
+              />
+            )}
           </li>
         </>
       ) : (
