@@ -49,7 +49,7 @@ const ForgotPass = () => {
           </div>
           <input
             className="btn  bg-orange-500 hover:bg-orange-500 w-full mt-5 border-none"
-            value="Sign up"
+            value="Submit"
             type="submit"
           />
 

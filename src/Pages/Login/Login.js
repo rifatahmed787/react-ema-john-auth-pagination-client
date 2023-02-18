@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import { GoogleAuthProvider } from "firebase/auth";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -7,7 +8,7 @@ import { AuthContext } from "../../contexts/UserContext";
 import "./Login.css";
 
 const Login = () => {
-  const { signIn, loading } = useContext(AuthContext);
+  const { signIn, loading, googleSignIn } = useContext(AuthContext);
   const [error, setError] = useState("");
   const location = useLocation();
   const [loginUserEmail, setLoginUserEmail] = useState("");
@@ -41,6 +42,23 @@ const Login = () => {
       });
   };
 
+  const handleGoogleSignUp = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success("Successfully sign in.");
+        navigate("/");
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="mt-20  mx-auto lg:w-1/3 md:w-2/5 sm:w-11/12">
       <div className=" small-width bg-[#F3F4F6] dark:bg-black dark:border p-7 shadow-2xl border border-orange-400 rounded-xl">
@@ -56,7 +74,7 @@ const Login = () => {
               type="Email"
               placeholder="Email"
               {...register("email", { required: "Email is required" })}
-              className="input text-sm input-bordered bg-orange-100 width-responsive dark:bg-black dark:text-white dark:border-white"
+              className="input text-sm input-bordered bg-orange-100  dark:bg-black dark:text-white dark:border-white"
               style={{ fontSize: "14px", height: "50px" }}
             />
             {errors.email && (
@@ -124,7 +142,7 @@ const Login = () => {
         </p>
         <div className="divider dark:text-white">OR</div>
         <button
-          //   onClick={handleGoogleSignUp}
+          onClick={handleGoogleSignUp}
           className="btn btn-outline w-full border-orange-300 hover:border-orange-300 hover:bg-orange-500 dark:text-white"
         >
           CONTINUE WITH GOOGLE

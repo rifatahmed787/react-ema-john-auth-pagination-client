@@ -77,25 +77,49 @@ const Navbar = () => {
             <Link to="/dashboard">Dashboard</Link>
           </li>
           <li
-            className="btn btn-ghost btn-sm normal-case text-base flex items-center navber-left"
+            className="normal-case text-base flex items-center navber-left"
             onClick={handleLogOut}
           >
-            Log out
+            <button type="button">Log out</button>
           </li>
           <li>
             {user?.photoURL ? (
-              <img
-                title="user?.displayName"
-                src={user.photoURL}
-                alt=""
-                className="w-5"
-              />
+              <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
+                <label tabIndex={0} className="">
+                  {" "}
+                  <img
+                    src={user.photoURL}
+                    alt=""
+                    className="w-7 h-7 rounded-full"
+                  />
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-72 text-center"
+                >
+                  <li className="text-black">{user?.displayName}</li>
+                  <li className="text-black">{user?.email}</li>
+                </ul>
+              </div>
             ) : (
-              <Icon
-                title="user?.displayName"
-                icon="iconoir:profile-circle"
-                width="25"
-              />
+              <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
+                <label tabIndex={0}>
+                  {" "}
+                  <Icon
+                    title="user?.displayName"
+                    icon="iconoir:profile-circle"
+                    width="25"
+                    className="lg:mt-2"
+                  />
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-72 text-center"
+                >
+                  <li className="text-black">{user?.displayName}</li>
+                  <li className="text-black">{user?.email}</li>
+                </ul>
+              </div>
             )}
           </li>
         </>
