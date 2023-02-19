@@ -24,7 +24,7 @@ const ForgotPass = () => {
   };
 
   return (
-    <div className="mt-20  mx-auto lg:w-1/3 md:w-2/5 sm:w-11/12">
+    <div className="my-20  mx-auto lg:w-1/3 md:w-2/5 sm:w-11/12">
       <div className=" small-width bg-[#F3F4F6] dark:bg-black dark:border p-7 shadow-2xl border border-orange-400 rounded-xl">
         <h2 className="text-2xl font-bold text-orange-500 text-center dark:text-white">
           Forgot Password
