@@ -67,7 +67,9 @@ const Carousel = () => {
         <SwiperSlide>
           <div className="grid grid-cols-2 justify-items-center pb-10 pt-4 bg-[#FFEBCD] dark:bg-black dark:text-white">
             <div className="my-auto">
-              <h2 className="text-3xl font-serif font-bold">Cool dude bag</h2>
+              <h2 className="text-3xl font-serif font-bold">
+                Cool dude backpack
+              </h2>
               <p className="py-2">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                 <br />
