@@ -45,10 +45,17 @@ const Navbar = () => {
       </li>
       <li
         className={`font-semibold dark:text-white ${
-          location.pathname === "/blog" ? "text-orange-300" : ""
+          location.pathname === "/shop" ? "text-orange-300" : ""
         }`}
       >
-        <Link to="/blog">About</Link>
+        <Link to="/shop">Shop</Link>
+      </li>
+      <li
+        className={`font-semibold dark:text-white ${
+          location.pathname === "/about" ? "text-orange-300" : ""
+        }`}
+      >
+        <Link to="/about">About us</Link>
       </li>
       <li
         className={`font-semibold dark:text-white ${
@@ -59,10 +66,10 @@ const Navbar = () => {
       </li>
       <li
         className={`font-semibold dark:text-white ${
-          location.pathname === "/blog" ? "text-orange-300" : ""
+          location.pathname === "/cart" ? "text-orange-300" : ""
         }`}
       >
-        <Link to="/blog">
+        <Link to="/cart">
           <Icon icon="material-symbols:shopping-cart-outline" width="20" />
         </Link>
       </li>

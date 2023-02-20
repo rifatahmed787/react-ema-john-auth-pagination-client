@@ -1,16 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
-import About from "../components/About/About";
-import Inventory from "../components/Inventory/Inventory";
-import Orders from "../components/Orders/Orders";
-import Shipping from "../components/Shipping/Shipping";
-import Shop from "../components/Shop/Shop";
+import Orders from "../Pages/Orders/Orders";
+import Shipping from "../Pages/Shipping/Shipping";
+import Shop from "../Pages/Shop/Shop";
 import Main from "../layouts/Main";
 import { productsAndCartLoader } from "../loaders/productsAndCartLoader";
+import About from "../Pages/About/About";
 import Home from "../Pages/Home/Home";
 import ForgotPass from "../Pages/Login/ForgotPass";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
+import Cart from "../Pages/Cart/Cart";
 
 export const router = createBrowserRouter([
   {
@@ -22,17 +22,21 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "/shop",
+        element: <Shop />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+      {
         path: "/orders",
         loader: productsAndCartLoader,
         element: <Orders />,
-      },
-      {
-        path: "/inventory",
-        element: (
-          <PrivateRoute>
-            <Inventory />
-          </PrivateRoute>
-        ),
       },
       {
         path: "/shipping",
@@ -42,10 +46,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path: "/shop",
-        element: <Shop />,
-      },
+
       {
         path: "/login",
         element: <Login />,

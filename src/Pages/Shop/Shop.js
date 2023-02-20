@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   addToDb,
   deleteShoppingCart,
   getStoredCart,
 } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
-import Product from "../Product/Product";
-import "./Shop.css";
+import Product from "./Product/Product";
+import "../Shop/Shop.css";
 
 const Shop = () => {
   // const { products, count } = useLoaderData();
   const [products, setProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
   const [count, setCount] = useState(0);
   const [cart, setCart] = useState([]);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(10);
-
+  console.log(searchResult);
   useEffect(() => {
     const url = `http://localhost:5000/products?page=${page}&size=${size}`;
     fetch(url)
@@ -61,7 +63,6 @@ const Shop = () => {
   }, [products]);
 
   const handleAddToCart = (selectedProduct) => {
-    console.log(selectedProduct);
     let newCart = [];
     const exists = cart.find((product) => product._id === selectedProduct._id);
     if (!exists) {
@@ -79,29 +80,58 @@ const Shop = () => {
     addToDb(selectedProduct._id);
   };
 
+  //search field handle
+
+  const SearchHandler = (searchTerm) => {
+    setSearchTerm(searchTerm);
+    if (searchTerm !== " ") {
+      const newProducts = products.filter((product) => {
+        return Object.values(product)
+          .join(" ")
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase());
+      });
+      setSearchResult(newProducts);
+    } else {
+      setSearchResult(products);
+    }
+  };
+
+  //handle scrolling
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="shop-container">
-      <div className="products-container">
+    <div>
+      <div>
+        <Product
+          products={searchTerm.length < 1 ? products : searchResult}
+          term={searchTerm}
+          searchKeyword={SearchHandler}
+          handleAddToCart={handleAddToCart}
+        />
+      </div>
+      {/* <div className="grid justify-items-center grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-y-8 py-8 px-5">
         {products.map((product) => (
           <Product
             key={product._id}
-            product={product}
+            product={searchTerm.length < 1 ? product : searchResult}
             handleAddToCart={handleAddToCart}
           ></Product>
         ))}
-      </div>
-      <div className="cart-container">
+      </div> */}
+      {/* <div className="cart-container">
         <Cart clearCart={clearCart} cart={cart}>
           <Link to="/orders">
             <button>Review Order</button>
           </Link>
         </Cart>
-      </div>
+      </div> */}
       <div className="pagination">
         {[...Array(pages).keys()].map((number) => (
           <button
             onClick={() => setPage(number)}
-            // className={page === number && "selected"}
             className={page === number ? "selected" : ""}
             key={number}
           >
