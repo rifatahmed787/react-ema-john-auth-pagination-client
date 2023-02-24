@@ -1,10 +1,10 @@
-import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SmallSpinner from "../../components/Spinner/SmallSpinner";
 import { AuthContext } from "../../contexts/UserContext";
+import useToken from "../../Hooks/useToken/useToken";
 import "./Login.css";
 
 const Login = () => {
@@ -12,14 +12,14 @@ const Login = () => {
   const [error, setError] = useState("");
   const location = useLocation();
   const [loginUserEmail, setLoginUserEmail] = useState("");
-  //   const [token] = useToken(loginUserEmail);
+  const [token] = useToken(loginUserEmail);
   const navigate = useNavigate();
 
   const from = location.state?.from?.pathname || "/";
 
-  //   if (token) {
-  //     navigate(from, { replace: true });
-  //   }
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
   const {
     register,
@@ -49,9 +49,32 @@ const Login = () => {
         console.log(user);
         toast.success("Successfully sign in.");
         navigate("/");
+        googleUser(user.displayName, user.email);
       })
       .catch((error) => {
         setError(error);
+      });
+  };
+
+  //post method for googleuser
+  const googleUser = (name, email) => {
+    const googleUser = {
+      name,
+      email,
+      type: "Buyer",
+      verified: false,
+    };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(googleUser),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setLoginUserEmail(email);
       });
   };
 
@@ -135,9 +158,12 @@ const Login = () => {
           <div>{setError && <p className="text-red-600">{error}</p>}</div>
         </form>
         <p className="mt-5 dark:text-white">
-          Don't have an account{" "}
-          <Link className="text-black dark:text-primary link" to="/signup">
-            Please Sign up
+          Don't have an account Please{" "}
+          <Link
+            className=" dark:text-primary link text-orange-700"
+            to="/signup"
+          >
+            Sign up
           </Link>
         </p>
         <div className="divider dark:text-white">OR</div>

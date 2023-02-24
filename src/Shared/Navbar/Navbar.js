@@ -41,53 +41,62 @@ const Navbar = () => {
           location.pathname === "/" ? "text-orange-300" : ""
         }`}
       >
-        <Link to="/">Home</Link>
+        <Link title="Home" to="/">
+          Home
+        </Link>
       </li>
       <li
         className={`font-semibold dark:text-white ${
           location.pathname === "/shop" ? "text-orange-300" : ""
         }`}
       >
-        <Link to="/shop">Shop</Link>
-      </li>
-      <li
-        className={`font-semibold dark:text-white ${
-          location.pathname === "/about" ? "text-orange-300" : ""
-        }`}
-      >
-        <Link to="/about">About us</Link>
-      </li>
-      <li
-        className={`font-semibold dark:text-white ${
-          location.pathname === "/blog" ? "text-orange-300" : ""
-        }`}
-      >
-        <Link to="/blog">Dashboard</Link>
+        <Link title="Shop" to="/shop">
+          Shop
+        </Link>
       </li>
       <li
         className={`font-semibold dark:text-white ${
           location.pathname === "/cart" ? "text-orange-300" : ""
         }`}
       >
-        <Link to="/cart">
+        <Link title="Cart" to="/cart">
           <Icon icon="material-symbols:shopping-cart-outline" width="20" />
         </Link>
+      </li>
+      <li
+        className={`font-semibold dark:text-white ${
+          location.pathname === "/about" ? "text-orange-300" : ""
+        }`}
+      >
+        <Link title="About us" to="/about">
+          About us
+        </Link>
+      </li>
+      <li
+        className={`font-semibold dark:text-white ${
+          location.pathname === "/dashboard" ? "text-orange-300" : ""
+        }`}
+      >
+        {user?.email ? (
+          <Link title="Dashboard" to="/dashboard">
+            Dashboard
+          </Link>
+        ) : (
+          <Link title="Dashboard" to="/login">
+            Dashboard
+          </Link>
+        )}
       </li>
 
       {user?.uid || user?.email ? (
         <>
           <li
-            className={`font-semibold dark:text-white ${
-              location.pathname === "/dashboard" ? "text-orange-300" : ""
-            }`}
-          >
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-          <li
             className="normal-case text-base flex items-center navber-left"
             onClick={handleLogOut}
           >
-            <button type="button">Log out</button>
+            <button title="Log out" type="button">
+              Log out
+            </button>
           </li>
           <li>
             {user?.photoURL ? (
@@ -97,15 +106,15 @@ const Navbar = () => {
                   <img
                     src={user.photoURL}
                     alt=""
-                    className="w-7 h-7 rounded-full"
+                    className="w-7 h-7 rounded-full lg:mt-2"
                   />
                 </label>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-72 text-center"
+                  className="dropdown-content bg-[#1C2B35] menu p-2 shadow rounded-box w-72 text-center"
                 >
-                  <li className="text-black">{user?.displayName}</li>
-                  <li className="text-black">{user?.email}</li>
+                  <li className="text-white">{user?.displayName}</li>
+                  <li className="text-white">{user?.email}</li>
                 </ul>
               </div>
             ) : (
@@ -121,10 +130,10 @@ const Navbar = () => {
                 </label>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-72 text-center"
+                  className="dropdown-content bg-[#1C2B35] menu p-2 shadow  rounded-box w-72 text-center"
                 >
-                  <li className="text-black">{user?.displayName}</li>
-                  <li className="text-black">{user?.email}</li>
+                  <li className="text-white">{user?.displayName}</li>
+                  <li className="text-white">{user?.email}</li>
                 </ul>
               </div>
             )}
@@ -137,14 +146,18 @@ const Navbar = () => {
               location.pathname === "/login" ? "text-orange-300" : ""
             }`}
           >
-            <Link to="/login">Log in</Link>
+            <Link title="Log in" to="/login">
+              Log in
+            </Link>
           </li>
           <li
             className={`font-semibold dark:text-white ${
               location.pathname === "/signup" ? "text-orange-300" : ""
             }`}
           >
-            <Link to="/signup">Sign up</Link>
+            <Link title="Sign up" to="/signup">
+              Sign up
+            </Link>
           </li>
         </>
       )}
@@ -234,6 +247,12 @@ const Navbar = () => {
                       </button>
                     </div>
                   </div>
+                  <label
+                    htmlFor="dashboard-drawer"
+                    className="btn drawer-button btn-xs ml-20 rounded-md lg:hidden dark:text-white"
+                  >
+                    Open drawer
+                  </label>
                   <nav>
                     <ul className="space-y-4 text-[#FFFFFF]">
                       {menuItems}

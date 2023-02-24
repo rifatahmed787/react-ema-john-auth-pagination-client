@@ -11,11 +11,16 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
 import Cart from "../Pages/Cart/Cart";
+import DashboardLayout from "../layouts/DashboardLayout";
+import Profile from "../Pages/Dashboard/Profile/Profile";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -58,6 +63,21 @@ export const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    errorElement: <ErrorPage />,
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "/dashboard",
+        element: <Profile />,
+      },
+      {
+        path: "/dashboard/allusers",
+        element: <AllUsers />,
       },
     ],
   },

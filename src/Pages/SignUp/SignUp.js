@@ -4,18 +4,19 @@ import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import SmallSpinner from "../../components/Spinner/SmallSpinner";
 import { AuthContext } from "../../contexts/UserContext";
+import useToken from "../../Hooks/useToken/useToken";
 import "./SignUp.css";
 
 const SignUp = () => {
   const { SignUp, updateUser, SignOut, loading } = useContext(AuthContext);
   const [error, setError] = useState("");
-  //   const [createdUserEmail, setCreatedUserEmail] = useState("");
-  // const [token] = useToken(createdUserEmail);
+  const [createdUserEmail, setCreatedUserEmail] = useState("");
+  const [token] = useToken(createdUserEmail);
   const navigate = useNavigate();
 
-  // if (token) {
-  //   navigate("/");
-  // }
+  if (token) {
+    navigate("/");
+  }
 
   const {
     register,
@@ -28,14 +29,15 @@ const SignUp = () => {
     SignUp(data.email, data.password)
       .then((result) => {
         const user = result.user;
-
         console.log(user);
         const userInfo = {
           displayName: data.name,
         };
 
         updateUser(userInfo)
-          .then(() => {})
+          .then(() => {
+            saveUser(data.name, data.email);
+          })
           .catch((error) => console.error(error));
         SignOut()
           .then(() => {
@@ -46,6 +48,23 @@ const SignUp = () => {
       })
       .catch((error) => {
         setError(error.message);
+      });
+  };
+
+  //user post to database
+  const saveUser = (name, email) => {
+    const user = { name, email, verified: false };
+    fetch("http://localhost:5000/allusers", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setCreatedUserEmail(email);
+        console.log(data);
       });
   };
 
@@ -135,9 +154,9 @@ const SignUp = () => {
           <div>{setError && <p className="text-red-600">{error}</p>}</div>
         </form>
         <p className="mt-5 dark:text-white">
-          Already have an account{" "}
-          <Link className="text-black dark:text-primary link" to="/login">
-            Please Log in
+          Already have an account Please{" "}
+          <Link className="text-orange-700 dark:text-primary link" to="/login">
+            Log in
           </Link>
         </p>
       </div>

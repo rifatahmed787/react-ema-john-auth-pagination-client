@@ -24,7 +24,6 @@ const Carousel = () => {
         spaceBetween={30}
         loop={true}
         centeredSlides={true}
-        loopFillGroupWithBlank={true}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
@@ -47,9 +46,9 @@ const Carousel = () => {
                 <br />
                 Commodi fuga ullam fugiat, id velit dicta.
               </p>
-              <h2 className="pb-2 font-bold">$400</h2>
-              <Link>
-                <button class="btn bg-orange-500 border-none hover:bg-orange-500">
+              <h2 className="pb-2 text-xl font-bold">$400</h2>
+              <Link to="/shop">
+                <button className="btn bg-orange-500 border-none hover:bg-orange-500">
                   Buy Now
                   <Icon icon="material-symbols:arrow-forward-ios" width="12" />
                   <Icon icon="material-symbols:arrow-forward-ios" width="12" />
@@ -75,9 +74,9 @@ const Carousel = () => {
                 <br />
                 Commodi fuga ullam fugiat, id velit dicta.
               </p>
-              <h2 className="pb-2 font-bold">$400</h2>
-              <Link>
-                <button class="btn bg-orange-500 border-none hover:bg-orange-500">
+              <h2 className="pb-2 text-xl font-bold">$400</h2>
+              <Link to="/shop">
+                <button className="btn bg-orange-500 border-none hover:bg-orange-500">
                   Buy Now
                   <Icon icon="material-symbols:arrow-forward-ios" width="12" />
                   <Icon icon="material-symbols:arrow-forward-ios" width="12" />
@@ -96,9 +95,9 @@ const Carousel = () => {
                 <br />
                 Commodi fuga ullam fugiat, id velit dicta.
               </p>
-              <h2 className="pb-2 font-bold">$400</h2>
-              <Link>
-                <button class="btn bg-orange-500 border-none hover:bg-orange-500">
+              <h2 className="pb-2 text-xl font-bold">$400</h2>
+              <Link to="/shop">
+                <button className="btn bg-orange-500 border-none hover:bg-orange-500">
                   Buy Now
                   <Icon icon="material-symbols:arrow-forward-ios" width="12" />
                   <Icon icon="material-symbols:arrow-forward-ios" width="12" />
@@ -119,10 +118,10 @@ const Carousel = () => {
                 <br />
                 Suscipit quidem voluptates soluta, consequatur nisi quaerat.
               </p>
-              <h2 className="pb-2 font-bold">$1200</h2>
-              <Link>
+              <h2 className="pb-2 text-xl font-bold">$1200</h2>
+              <Link to="/shop">
                 {" "}
-                <button class="btn bg-orange-500 border-none hover:bg-orange-500">
+                <button className="btn bg-orange-500 border-none hover:bg-orange-500">
                   Buy Now
                   <Icon icon="material-symbols:arrow-forward-ios" width="12" />
                   <Icon icon="material-symbols:arrow-forward-ios" width="12" />
@@ -143,9 +142,9 @@ const Carousel = () => {
                 <br />
                 Officiis eius qui suscipit quisquam blanditiis perferendis.
               </p>
-              <h2 className="pb-2 font-bold">$600</h2>
-              <Link>
-                <button class="btn bg-orange-500 border-none hover:bg-orange-500">
+              <h2 className="pb-2 text-xl font-bold">$600</h2>
+              <Link to="/shop">
+                <button className="btn bg-orange-500 border-none hover:bg-orange-500">
                   Buy Now{" "}
                   <Icon icon="material-symbols:arrow-forward-ios" width="12" />
                   <Icon icon="material-symbols:arrow-forward-ios" width="12" />

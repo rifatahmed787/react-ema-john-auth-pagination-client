@@ -29,7 +29,7 @@ const Category = () => {
           {categories.map((category) => (
             <div
               key={category._id}
-              className="max-w-sm shadow-2xl relative card rounded-md overflow-hidden"
+              className="max-w-sm shadow-2xl bg-orange-300 relative card rounded-md overflow-hidden"
             >
               <div className="relative">
                 <img src={category.img} alt="" className="w-96 h-60" />

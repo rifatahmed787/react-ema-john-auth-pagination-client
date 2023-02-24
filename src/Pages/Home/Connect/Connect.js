@@ -4,7 +4,7 @@ const Connect = () => {
   return (
     <div className="flex justify-center items-center rounded-lg mt-5 container mx-auto h-80 bg-[#FFEBCD] dark:bg-black dark:border dark:text-white">
       <div>
-        <div class="mt-5">
+        <div className="mt-5">
           <h1 className="text-4xl font-serif font-bold">LET'S STAY IN TOUCH</h1>
           <p className="py-2">Get updates on sales, special and more</p>
         </div>
