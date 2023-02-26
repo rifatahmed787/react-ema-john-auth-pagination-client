@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-
-import Cart from "../Cart/Cart";
 import Product from "./Product/Product";
 import "../Shop/Shop.css";
 import Spinner from "../../components/Spinner/Spinner";
@@ -15,7 +13,7 @@ const Shop = () => {
   TitleHook("Shop");
 
   useEffect(() => {
-    const url = `http://localhost:5000/products?page=${page}&size=${size}`;
+    const url = `https://react-ema-john-pagination-server.vercel.app/products?page=${page}&size=${size}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

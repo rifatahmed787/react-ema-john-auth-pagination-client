@@ -1,24 +1,45 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useEffect } from "react";
+import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import Spinner from "../../components/Spinner/Spinner";
 import { AuthContext } from "../../contexts/UserContext";
-
-import { getStoredCart } from "../../utilities/fakedb";
 import ReviewItem from "../ReviewItem/ReviewItem";
 import CartEstimate from "./CartEstimate";
 
 const Cart = () => {
   const { user } = useContext(AuthContext);
 
-  const { data: cartData = [], isLoading } = useQuery({
+  const {
+    data: cartData = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["cartData"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/addtocart/${user?.email}`);
+      const res = await fetch(
+        `https://react-ema-john-pagination-server.vercel.app/addtocart/${user?.email}`
+      );
       const data = await res.json();
+      console.log(data);
       return data;
     },
   });
+
+  // delete all from cart
+  const handleClearCart = () => {
+    fetch(
+      `https://react-ema-john-pagination-server.vercel.app/clearcart?email=${user?.email}`,
+      {
+        method: "DELETE",
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Cart cleared succcessfully");
+        refetch();
+      });
+  };
 
   //handle scrolling
   useEffect(() => {
@@ -44,11 +65,7 @@ const Cart = () => {
         )}
       </div>
       <div className="cart-container flex justify-center">
-        <CartEstimate cart={cartData}>
-          <Link to="/orders">
-            <button>Review Order</button>
-          </Link>
-        </CartEstimate>
+        <CartEstimate cart={cartData} handleClearCart={handleClearCart} />
       </div>
     </div>
   );

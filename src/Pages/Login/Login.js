@@ -64,7 +64,7 @@ const Login = () => {
       type: "Buyer",
       verified: false,
     };
-    fetch("http://localhost:5000/users", {
+    fetch("https://react-ema-john-pagination-server.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

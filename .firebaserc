@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "ema-john-simple-a7a92"
-  }
+    "default": "react-auth-router-ema-john",
+    "staging": "react-auth-router-ema-john"
+  },
+  "targets": {},
+  "etags": {}
 }

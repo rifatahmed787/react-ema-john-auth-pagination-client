@@ -54,7 +54,7 @@ const SignUp = () => {
   //user post to database
   const saveUser = (name, email) => {
     const user = { name, email, verified: false };
-    fetch("http://localhost:5000/allusers", {
+    fetch("https://react-ema-john-pagination-server.vercel.app/allusers", {
       method: "POST",
       headers: {
         "content-type": "application/json",

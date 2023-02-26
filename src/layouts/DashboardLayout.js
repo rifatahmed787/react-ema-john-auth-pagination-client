@@ -26,7 +26,7 @@ const DashboardLayout = () => {
         </div>
         <div className="drawer-side">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 bg-orange-200 text-base-content">
+          <ul className="menu p-4 w-80 bg-orange-200 dark:bg-[#08221C] text-base-content">
             <li>
               {user?.photoURL ? (
                 <Link to="/dashboard">
@@ -65,7 +65,10 @@ const DashboardLayout = () => {
                       : ""
                   }`}
                 >
-                  <Link className="text-black" to="/dashboard/allusers">
+                  <Link
+                    className="text-black dark:text-white"
+                    to="/dashboard/allusers"
+                  >
                     All users
                   </Link>
                 </li>

@@ -22,7 +22,7 @@ const Product = ({ product }) => {
       email: user.email,
     };
 
-    fetch("http://localhost:5000/addtocart", {
+    fetch("https://react-ema-john-pagination-server.vercel.app/addtocart", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -33,10 +33,10 @@ const Product = ({ product }) => {
       .then((data) => {
         if (data.acknowledged) {
           toast.success("Product added to cart");
-          navigate("/cart");
+          // navigate("/cart");
+          setClicked(true);
         }
       });
-    setClicked(true);
   };
 
   return (
