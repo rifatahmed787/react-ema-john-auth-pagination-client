@@ -16,6 +16,7 @@
 * React JS
 * Node.js
 * Express.js
+* TailwindCSS
 * Firebase
 * MongoDB
 * JWT
