@@ -4,7 +4,7 @@ import React from "react";
 import "../ReviewItem/ReviewItem.css";
 
 const ReviewItem = ({ cart, handleRemoveItem }) => {
-  const { name, price, quantity, shipping, img } = cart;
+  const { name, price, quantity, shipping, img, _id } = cart;
 
   return (
     <div className="flex justify-center items-center py-3">
@@ -27,7 +27,10 @@ const ReviewItem = ({ cart, handleRemoveItem }) => {
           </div>
 
           <div className="delete-container">
-            <button className="btn-delete">
+            <button
+              className="btn-delete"
+              onClick={() => handleRemoveItem(_id)}
+            >
               <FontAwesomeIcon
                 className="delete-icon"
                 icon={faTrashAlt}

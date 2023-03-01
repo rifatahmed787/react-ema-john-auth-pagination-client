@@ -21,7 +21,6 @@ const Cart = () => {
         `https://react-ema-john-pagination-server.vercel.app/addtocart/${user?.email}`
       );
       const data = await res.json();
-      console.log(data);
       return data;
     },
   });
@@ -36,8 +35,30 @@ const Cart = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        toast.success("Cart cleared succcessfully");
-        refetch();
+        if (data.deletedCount > 0) {
+          refetch();
+          toast.success("Cart cleared succcessfully");
+        }
+      });
+  };
+
+  //handledelete review items from cart
+  const handleRemoveItem = (id) => {
+    fetch(
+      `https://react-ema-john-pagination-server.vercel.app/deleteitem/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          toast.success("Item deleted successfully");
+          refetch();
+        }
       });
   };
 
@@ -52,9 +73,15 @@ const Cart = () => {
 
   return (
     <div className="lg:grid grid-cols-4 gap-4">
-      <div className="col-span-3">
+      <div className="col-span-3 py-7">
         {cartData && cartData.length ? (
-          cartData.map((cart) => <ReviewItem cart={cart} key={cart._id} />)
+          cartData.map((cart) => (
+            <ReviewItem
+              cart={cart}
+              key={cart._id}
+              handleRemoveItem={handleRemoveItem}
+            />
+          ))
         ) : (
           <h2 className="flex justify-center items-center min-h-screen text-3xl font-bold">
             No Items for Review. Please,{" "}
@@ -64,7 +91,7 @@ const Cart = () => {
           </h2>
         )}
       </div>
-      <div className="cart-container flex justify-center">
+      <div className="cart-container flex justify-center py-5">
         <CartEstimate cart={cartData} handleClearCart={handleClearCart} />
       </div>
     </div>

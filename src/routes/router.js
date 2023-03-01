@@ -15,6 +15,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Profile from "../Pages/Dashboard/Profile/Profile";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import Payment from "../Pages/PaymentSystem/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
             <Shipping />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/payment",
+        element: <Payment />,
       },
 
       {
